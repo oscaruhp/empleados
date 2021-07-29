@@ -34,8 +34,11 @@ if(isset($_GET["insertar"])){
     $data = json_decode(file_get_contents("php://input"));
     $nombre=$data->nombre;
     $correo=$data->correo;
+        if(($correo!="")&&($nombre!="")){
+            
     $sqlEmpleaados = mysqli_query($conexionBD,"INSERT INTO empleados(nombre,correo) VALUES('$nombre','$correo') ");
     echo json_encode(["success"=>1]);
+        }
     exit();
 }
 // Actualiza datos pero recepciona datos de nombre, correo y una clave para realizar la actualización
@@ -43,7 +46,7 @@ if(isset($_GET["actualizar"])){
     
     $data = json_decode(file_get_contents("php://input"));
 
-    $id=$data->id;
+    $id=(isset($data->id))?$data->id:$_GET["actualizar"];
     $nombre=$data->nombre;
     $correo=$data->correo;
     
