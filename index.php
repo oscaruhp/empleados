@@ -63,7 +63,4 @@ if(mysqli_num_rows($sqlEmpleaados) > 0){
 else{ echo json_encode([["success"=>0]]); }
 
 
-
-
-
 ?>
